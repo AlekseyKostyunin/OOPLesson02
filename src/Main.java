@@ -19,7 +19,30 @@ public class Main {
         VeterinaryClinic clinic = new VeterinaryClinic();
         clinic.addPatients(barsik, eagle, penguin, duck, new Fish("Pepe", LocalDate.of(1997, 2, 6), new ArrayList<>(), "Flu", "Harry"));
         System.out.println(clinic.getPatients());
+
         System.out.println(clinic.getGoables());
+        System.out.println(clinic.getFlyble());
+        System.out.println(clinic.getSwimble());
+
+        // Добавлением персонала клиники и проверка методов работы с персоналом
+        System.out.println("---------------------------------");
+
+        Nurse nurse1 = new Nurse("Светлана", LocalDate.of(1997, 1, 4),
+                "Диетолог", "Москва 1", true);
+
+        Doctor doctor1 = new Doctor("Сергей", LocalDate.of(1990, 4, 14),
+                "Травматолог", "Москва 2", null ); // без медсестры
+
+        Doctor doctor2 = new Doctor("Андрей", LocalDate.of(1987, 11, 5),
+                "Диетолог", "Москва 3", nurse1); // с медсестрой Светланой
+        clinic.addPersonal(doctor1, doctor2, nurse1); // добавляем персонал клиники
+
+        System.out.println(clinic.getAllDoctors()); // выводим всех докторов
+        System.out.println(clinic.getAllNurses()); // выводим всех медсестер
+
+        doctor1.toAction(); // проверка переопределенного абстрактного метода
+        nurse1.toAction();
+        System.out.println(nurse1.getAccessToPharmacy()); // проверка наличия прав у сестры к аптеке
 
     }
 }
